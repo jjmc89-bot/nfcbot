@@ -104,7 +104,7 @@ class NfcBot(SingleSiteBot, ExistingPageBot):
         page.save(
             text=f"{iterable_to_wikitext(self.log_list).strip()}\n\n~~~~",
             summary=str(self.start_time),
-            botflag=False,
+            bot=False,
             force=True,
             section="new",
         )
