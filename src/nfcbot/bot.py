@@ -204,7 +204,7 @@ class NfurFixerBot(NfcBot):
                     break
                 new_title = self.get_new_title(article, other_pages, vios)
                 if new_title:
-                    link.title = new_title  # type: ignore[assignment]
+                    link.title = new_title
 
     def treat_page(self) -> None:
         self.check_disabled()
@@ -370,7 +370,7 @@ class FileRemoverBot(NfcBot):
                             pass
                         else:
                             self.log_issue(self.current_page, "[[WP:NFG]]")
-            tag.contents = "\n".join(lines) + "\n"  # type: ignore[assignment]
+            tag.contents = "\n".join(lines) + "\n"
             if not tag.contents.strip():
                 wikicode.remove(tag)
 
