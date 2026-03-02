@@ -20,7 +20,7 @@ classifiers = [
 ]
 dependencies = [
     "mwparserfromhell == 0.7.2",
-    "pywikibot [mwoauth, mysql] == 10.3.2",
+    "pywikibot [mwoauth, mysql] == 11.0.0",
     "pywikibot-extensions == 24.9.21",
 ]
 description = "Non-free content bot"
