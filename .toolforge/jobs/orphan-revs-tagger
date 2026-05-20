@@ -8,12 +8,15 @@ select distinct
   p.page_namespace,
   p.page_title
 from
-  oldimage oi
-  left join page p on oi.oi_name = p.page_title
+  file
+  left join filerevision fr on file.file_id = fr.fr_file
+  left join page p on file.file_name = p.page_title
   inner join categorylinks cl on p.page_id = cl.cl_from
   left join linktarget lt on cl.cl_target_id = lt.lt_id
 where
-  oi_deleted = 0
+  file_deleted = 0
+  and fr_deleted = 0
+  and file.file_latest != fr.fr_id
   and p.page_namespace = 6
   and lt.lt_namespace = 14
   and lt.lt_title = 'All_non-free_media'
