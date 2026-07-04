@@ -332,10 +332,10 @@ class FileRemoverBot(NfcBot):
         for match in self.file_link_regex.finditer(
             self.remove_disabled_parts(text)
         ):
+            title = match.group("filename")
+            title = title.partition("#")[0].partition("{{!}}")[0]
             with suppress(ValueError):
-                file_page = FilePage.from_wikilink(
-                    match.group("filename"), self.site
-                )
+                file_page = FilePage.from_wikilink(title, self.site)
                 if file_page in files:
                     text = replaceExcept(
                         text=text,
@@ -402,10 +402,10 @@ class FileRemoverBot(NfcBot):
     ) -> None:
         for tpl in wikicode.ifilter_templates():
             for param in tpl.params:
+                value = self.remove_disabled_parts(param.value.strip())
+                value = value.partition("#")[0].partition("{{!}}")[0]
                 with suppress(ValueError):
-                    file_page = FilePage.from_wikilink(
-                        param.value.strip(), self.site
-                    )
+                    file_page = FilePage.from_wikilink(value, self.site)
                     if file_page in files:
                         tpl.remove(param, keep_field=True)
 
