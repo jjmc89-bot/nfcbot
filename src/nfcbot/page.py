@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 from collections.abc import Iterable
 from contextlib import suppress
+from functools import cached_property
 from typing import NamedTuple
 
 import mwparserfromhell
@@ -67,38 +68,30 @@ class NonFreeFilePage(pywikibot_extensions.page.FilePage, Page):
             not in self.categories()
         ):
             raise ValueError(f"{self} is not a non-free file.")
-        self._10c_articles: set[Page] = set()
-        self._10c_wikitext = ""
-        self._nfcc_file_violations: list[NfccViolation] = []
-        self._nfcc_usage_violations: list[NfccViolation] = []
 
-    @property
+    @cached_property
     def nfcc_file_violations(self) -> list[NfccViolation]:
-        if self._nfcc_file_violations:
-            return self._nfcc_file_violations
+        vios = []
         if self.file_is_used:
             visible_file_revs = 0
             for file_rev in self.get_file_history().values():
                 if not hasattr(file_rev, "filehidden"):
                     visible_file_revs += 1
                     if visible_file_revs > 1:
-                        self._nfcc_file_violations.append(
-                            NfccViolation(self, self, "7")
-                        )
+                        vios.append(NfccViolation(self, self, "7"))
                         break
         else:
-            self._nfcc_file_violations.append(NfccViolation(self, self, "7"))
+            vios.append(NfccViolation(self, self, "7"))
         if (
             self.megapixels
             and self.megapixels > 0.1 * 1.05
             and not self.has_template(nfcbot.NONFREE_NO_REDUCE_TPL)
         ):
-            self._nfcc_file_violations.append(NfccViolation(self, self, "3b"))
-        return self._nfcc_file_violations
+            vios.append(NfccViolation(self, self, "3b"))
+        return vios
 
-    def _10c_parse(self) -> tuple[set[Page], str]:
-        if self._10c_articles or self._10c_wikitext:
-            return self._10c_articles, self._10c_wikitext
+    @cached_property
+    def _parsed_articles(self) -> tuple[set[Page], str]:
         pywikibot.log(f"Parsing {self!r}")
         site = self.site
         if not hasattr(site, "nfur_tpl"):
@@ -132,9 +125,7 @@ class NonFreeFilePage(pywikibot_extensions.page.FilePage, Page):
             with suppress(ValueError):
                 links.add(Page.from_wikilink(wikilink.title, site))
                 wikicode.remove(wikilink)
-        self._10c_articles = self._get_articles(links)
-        self._10c_wikitext = str(wikicode)
-        return self._10c_articles, self._10c_wikitext
+        return self._get_articles(links), str(wikicode)
 
     @staticmethod
     def _get_articles(pages: Iterable[Page]) -> set[Page]:
@@ -153,22 +144,17 @@ class NonFreeFilePage(pywikibot_extensions.page.FilePage, Page):
             articles.add(page)
         return articles
 
-    @property
+    @cached_property
     def nfcc_usage_violations(self) -> list[NfccViolation]:
-        if self._nfcc_usage_violations:
-            return self._nfcc_usage_violations
+        vios = []
         for page in self.using_pages():
             if page.is_article:
-                article_links, text = self._10c_parse()
+                article_links, text = self._parsed_articles
                 if not (page in article_links or page.title() in text):
-                    self._nfcc_usage_violations.append(
-                        NfccViolation(self, page, "10c")
-                    )
+                    vios.append(NfccViolation(self, page, "10c"))
             else:
-                self._nfcc_usage_violations.append(
-                    NfccViolation(self, page, "9")
-                )
-        return self._nfcc_usage_violations
+                vios.append(NfccViolation(self, page, "9"))
+        return vios
 
     @property
     def nfcc_violations(self) -> list[NfccViolation]:
