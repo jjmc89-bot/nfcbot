@@ -20,8 +20,8 @@ classifiers = [
 ]
 dependencies = [
     "mwparserfromhell == 0.7.2",
-    "pywikibot [mwoauth, mysql] == 11.0.0",
-    "pywikibot-extensions == 24.9.21",
+    "pywikibot [mwoauth, mysql] == 11.4.2",
+    "pywikibot-extensions == 26.4.9",
 ]
 description = "Non-free content bot"
 keywords = [ "bot", "NFC", "NFCC", "non-free", "wikipedia" ]

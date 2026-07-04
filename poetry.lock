@@ -2,14 +2,14 @@
 
 [[package]]
 name = "certifi"
-version = "2026.5.20"
+version = "2026.6.17"
 description = "Python package for providing Mozilla's CA Bundle."
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
 files = [
-    {file = "certifi-2026.5.20-py3-none-any.whl", hash = "sha256:3c52e209ba0a4ad7aebe60436a4ab349c39e1e602e8c134221e546902ad25897"},
-    {file = "certifi-2026.5.20.tar.gz", hash = "sha256:69dea482ab64caa7b9f6aba1c6bf48bb6a5448d1c0f1b17ab42ad8c763a5344d"},
+    {file = "certifi-2026.6.17-py3-none-any.whl", hash = "sha256:2227dcbaafe0d2f59279d1762ddddc37783ed4354594f194ffc31d20f41fc3db"},
+    {file = "certifi-2026.6.17.tar.gz", hash = "sha256:024c88eeec92ca068db80f02b8b07c9cef7b9fe261d1d535abfd5abd6f6af432"},
 ]
 
 [[package]]
@@ -300,14 +300,14 @@ rsa = ["cryptography (>=46.0.7)"]
 
 [[package]]
 name = "pywikibot"
-version = "11.0.0"
+version = "11.4.2"
 description = "Python MediaWiki Bot Framework"
 optional = false
 python-versions = ">=3.9.0"
 groups = ["main"]
 files = [
-    {file = "pywikibot-11.0.0-py3-none-any.whl", hash = "sha256:a03b488408a681ffe215da87f152e8b8bcfb5e1216a604ace1225c18b59202f9"},
-    {file = "pywikibot-11.0.0.tar.gz", hash = "sha256:376677d70f770e4c811dd4f0a117574febd77888fbc85426fd2e9ef2ff777ad3"},
+    {file = "pywikibot-11.4.2-py3-none-any.whl", hash = "sha256:19d9630973e5ecf1997306cf7a2257095022a73305a6ff215f11f35c4a3a2400"},
+    {file = "pywikibot-11.4.2.tar.gz", hash = "sha256:6d0f201d40587f944a961a3c6b68a95f2d854eafcf035496b732feed3c2f3169"},
 ]
 
 [package.dependencies]
@@ -329,20 +329,20 @@ memento = ["memento_client (==0.6.1)"]
 mwoauth = ["PyJWT (!=2.10.0,!=2.10.1)", "mwoauth (>=0.4.0)"]
 mysql = ["PyMySQL (>=1.1.2)"]
 scripts = ["memento_client (==0.6.1)"]
-tkinter = ["Pillow (==10.4.0) ; platform_python_implementation == \"PyPy\" and python_version == \"3.9\"", "Pillow (==11.3.0) ; platform_python_implementation == \"CPython\" and python_version == \"3.9\"", "Pillow (==11.3.0) ; platform_python_implementation == \"PyPy\" and python_version == \"3.10\"", "Pillow (==12.1.0) ; platform_python_implementation == \"PyPy\" and python_version >= \"3.11\"", "Pillow (>=12.1.0) ; platform_python_implementation == \"CPython\" and python_version >= \"3.10\""]
+tkinter = ["Pillow (>=12.2.0) ; platform_python_implementation == \"CPython\" and python_version >= \"3.10\"", "Pillow (>=12.2.0) ; platform_python_implementation == \"PyPy\" and python_version >= \"3.11\""]
 weblinkchecker-py = ["memento_client (==0.6.1)"]
 wikitextparser = ["wikitextparser (>=0.56.4)"]
 
 [[package]]
 name = "pywikibot-extensions"
-version = "24.9.21"
+version = "26.4.9"
 description = "Extends the Pywikibot library"
 optional = false
-python-versions = "<4.0,>=3.8"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "pywikibot_extensions-24.9.21-py3-none-any.whl", hash = "sha256:42d9cb670415219f00e9fc644712cdef9563f3997d4529e646b99a2894bedc88"},
-    {file = "pywikibot_extensions-24.9.21.tar.gz", hash = "sha256:580072aafc1572f235efa3a3154885bf5a4b880b9abb998bea53a84b42cd013f"},
+    {file = "pywikibot_extensions-26.4.9-py3-none-any.whl", hash = "sha256:6ffd4ffca511416f58486780be655ef31d896306b7ab46a78ab19904b453ae9f"},
+    {file = "pywikibot_extensions-26.4.9.tar.gz", hash = "sha256:96b9c0e19be0429ab9cbda6c03dc55548f1bc18ba126fddd6a4ea0f01299457a"},
 ]
 
 [package.dependencies]
@@ -410,4 +410,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.13"
-content-hash = "559760e479923b6db1860252f4296676093b2c59b30c5dd8e68f79e526a884df"
+content-hash = "106349ce4b5b5a04b86349a63d7845143b8ae0f2fe970336db01fd714190b893"
