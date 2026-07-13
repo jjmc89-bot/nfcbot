@@ -80,7 +80,7 @@ repos:
           - --min-python-version
           - 3.13.0
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v2.1.0
+    rev: v2.3.0
     hooks:
       - id: mypy
         args: []
