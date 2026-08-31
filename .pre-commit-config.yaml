@@ -42,11 +42,11 @@ repos:
         args:
           - --py313-plus
   - repo: https://github.com/PyCQA/autoflake
-    rev: v2.3.3
+    rev: v2.4.0
     hooks:
       - id: autoflake
   - repo: https://github.com/PyCQA/isort
-    rev: 8.0.1
+    rev: 9.0.1
     hooks:
       - id: isort
   - repo: https://github.com/asottile/yesqa
@@ -80,7 +80,7 @@ repos:
           - --min-python-version
           - 3.13.0
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v2.3.0
+    rev: v2.3.1
     hooks:
       - id: mypy
         args: []
@@ -95,6 +95,6 @@ repos:
         additional_dependencies:
           - setuptools  # depends on pkg_resources
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.11.0.1
+    rev: v0.11.0.1-1
     hooks:
       - id: shellcheck
